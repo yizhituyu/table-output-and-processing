@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Tables</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 20px auto;
+            text-align: center;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        caption {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const table1Data = [
+            { index: "A1", value: 41 },
+            { index: "A2", value: 18 },
+            { index: "A3", value: 21 },
+            { index: "A4", value: 63 },
+            { index: "A5", value: 2 },
+            { index: "A6", value: 53 },
+            { index: "A7", value: 5 },
+            { index: "A8", value: 57 },
+            { index: "A9", value: 60 },
+            { index: "A10", value: 93 },
+            { index: "A11", value: 28 },
+            { index: "A12", value: 3 },
+            { index: "A13", value: 90 },
+            { index: "A14", value: 39 },
+            { index: "A15", value: 80 },
+            { index: "A16", value: 88 },
+            { index: "A17", value: 49 },
+            { index: "A18", value: 60 },
+            { index: "A19", value: 26 },
+            { index: "A20", value: 28 }
+        ];
+
+        const valueMap = {};
+        table1Data.forEach(item => valueMap[item.index] = item.value);
+
+        const table2Data = [
+            { category: "Alpha", value: valueMap["A5"] + valueMap["A20"] },
+            { category: "Beta", value: Math.floor(valueMap["A15"] / valueMap["A7"]) }, 
+            { category: "Charlie", value: valueMap["A13"] * valueMap["A12"] }
+        ];
+
+        function createTable1() {
+            let table1 = "<table><caption><strong>Table 1</strong></caption>";
+            table1 += "<tr><th>Index #</th><th>Value</th></tr>";
+            table1Data.forEach(item => {
+                table1 += `<tr><td>${item.index}</td><td>${item.value}</td></tr>`;
+            });
+            table1 += "</table>";
+            return table1;
+        }
+
+        function createTable2() {
+            let table2 = "<table><caption><strong>Table 2</strong></caption>";
+            table2 += "<tr><th>Category</th><th>Value</th></tr>";
+            table2Data.forEach(item => {
+                table2 += `<tr><td>${item.category}</td><td>${item.value}</td></tr>`;
+            });
+            table2 += "</table>";
+            return table2;
+        }
+
+        document.write(createTable1());
+        document.write(createTable2());
+    </script>
+</body>
+</html>
